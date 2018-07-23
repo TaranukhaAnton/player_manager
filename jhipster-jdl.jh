@@ -1,0 +1,32 @@
+
+
+entity Player{
+   	userName String ,
+	nickName String ,
+    fullName String ,
+    address String ,
+	email String ,
+    mobile String ,
+    phone String ,
+    contractId String ,
+    gameAccount String ,
+        
+ creationDate Instant,
+    
+	unplaced Boolean
+}
+
+
+
+
+
+// Set pagination options
+paginate  Player   with pagination
+// paginate Job with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+

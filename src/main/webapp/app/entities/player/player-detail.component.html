@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="player">
+            <h2><span>Player</span> {{player.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>User Name</span></dt>
+                <dd>
+                    <span>{{player.userName}}</span>
+                </dd>
+                <dt><span>Nick Name</span></dt>
+                <dd>
+                    <span>{{player.nickName}}</span>
+                </dd>
+                <dt><span>Full Name</span></dt>
+                <dd>
+                    <span>{{player.fullName}}</span>
+                </dd>
+                <dt><span>Address</span></dt>
+                <dd>
+                    <span>{{player.address}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{player.email}}</span>
+                </dd>
+                <dt><span>Mobile</span></dt>
+                <dd>
+                    <span>{{player.mobile}}</span>
+                </dd>
+                <dt><span>Phone</span></dt>
+                <dd>
+                    <span>{{player.phone}}</span>
+                </dd>
+                <dt><span>Contract Id</span></dt>
+                <dd>
+                    <span>{{player.contractId}}</span>
+                </dd>
+                <dt><span>Game Account</span></dt>
+                <dd>
+                    <span>{{player.gameAccount}}</span>
+                </dd>
+                <dt><span>Creation Date</span></dt>
+                <dd>
+                    <span>{{player.creationDate}}</span>
+                </dd>
+                <dt><span>Unplaced</span></dt>
+                <dd>
+                    <span>{{player.unplaced}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/player', player.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
