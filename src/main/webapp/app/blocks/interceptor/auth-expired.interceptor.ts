@@ -3,7 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AuthServerProvider } from 'app/core/auth/auth-session.service';
-import { LoginModalService } from 'app/core/login/login-modal.service';
+
 import { StateStorageService } from 'app/core/auth/state-storage.service';
 
 export class AuthExpiredInterceptor implements HttpInterceptor {
@@ -29,8 +29,7 @@ export class AuthExpiredInterceptor implements HttpInterceptor {
 
                             const authServer: AuthServerProvider = this.injector.get(AuthServerProvider);
                             authServer.logout();
-                            const loginModalService: LoginModalService = this.injector.get(LoginModalService);
-                            loginModalService.open();
+
                         }
                     }
                 }

@@ -13,11 +13,10 @@ import { PlayerManagerSharedModule } from 'app/shared';
 import { PlayerManagerCoreModule } from 'app/core';
 import { PlayerManagerAppRoutingModule } from './app-routing.module';
 import { PlayerManagerHomeModule } from './home/home.module';
-import { PlayerManagerAccountModule } from './account/account.module';
 import { PlayerManagerEntityModule } from './entities/entity.module';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
+import { JhiMainComponent,  ErrorComponent } from './layouts';
 
 @NgModule({
     imports: [
@@ -27,11 +26,10 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         PlayerManagerSharedModule,
         PlayerManagerCoreModule,
         PlayerManagerHomeModule,
-        PlayerManagerAccountModule,
         PlayerManagerEntityModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
-    declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
+    declarations: [JhiMainComponent,  ErrorComponent],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
