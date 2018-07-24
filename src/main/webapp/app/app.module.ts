@@ -6,15 +6,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
 import { PlayerManagerSharedModule } from 'app/shared';
 import { PlayerManagerCoreModule } from 'app/core';
 import { PlayerManagerAppRoutingModule } from './app-routing.module';
-import { PlayerManagerHomeModule } from './home/home.module';
 import { PlayerManagerEntityModule } from './entities/entity.module';
-import { StateStorageService } from 'app/core/auth/state-storage.service';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent,  ErrorComponent } from './layouts';
 
@@ -25,18 +22,11 @@ import { JhiMainComponent,  ErrorComponent } from './layouts';
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         PlayerManagerSharedModule,
         PlayerManagerCoreModule,
-        PlayerManagerHomeModule,
         PlayerManagerEntityModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent,  ErrorComponent],
     providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthExpiredInterceptor,
-            multi: true,
-            deps: [StateStorageService, Injector]
-        },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ErrorHandlerInterceptor,
