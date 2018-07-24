@@ -1,10 +1,8 @@
 package ua.sigma.pm.config.audit;
 
-import ua.sigma.pm.domain.PersistentAuditEvent;
-
 import org.springframework.boot.actuate.audit.AuditEvent;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
+import ua.sigma.pm.domain.PersistentAuditEvent;
 
 import java.util.*;
 
@@ -72,13 +70,9 @@ public class AuditEventConverter {
         if (data != null) {
             for (Map.Entry<String, Object> entry : data.entrySet()) {
                 // Extract the data that will be saved.
-                if (entry.getValue() instanceof WebAuthenticationDetails) {
-                    WebAuthenticationDetails authenticationDetails = (WebAuthenticationDetails) entry.getValue();
-                    results.put("remoteAddress", authenticationDetails.getRemoteAddress());
-                    results.put("sessionId", authenticationDetails.getSessionId());
-                } else {
-                    results.put(entry.getKey(), Objects.toString(entry.getValue()));
-                }
+
+                results.put(entry.getKey(), Objects.toString(entry.getValue()));
+
             }
         }
         return results;

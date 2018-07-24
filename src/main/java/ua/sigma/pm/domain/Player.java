@@ -50,9 +50,6 @@ public class Player implements Serializable {
     @Column(name = "creation_date")
     private Instant creationDate;
 
-    @Column(name = "unplaced")
-    private Boolean unplaced;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -191,19 +188,6 @@ public class Player implements Serializable {
     public void setCreationDate(Instant creationDate) {
         this.creationDate = creationDate;
     }
-
-    public Boolean isUnplaced() {
-        return unplaced;
-    }
-
-    public Player unplaced(Boolean unplaced) {
-        this.unplaced = unplaced;
-        return this;
-    }
-
-    public void setUnplaced(Boolean unplaced) {
-        this.unplaced = unplaced;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -240,7 +224,6 @@ public class Player implements Serializable {
             ", contractId='" + getContractId() + "'" +
             ", gameAccount='" + getGameAccount() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
-            ", unplaced='" + isUnplaced() + "'" +
             "}";
     }
 }

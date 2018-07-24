@@ -25,7 +25,7 @@
             <th jhiSortBy="contractId"><span>Contract Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="gameAccount"><span>Game Account</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="creationDate"><span>Creation Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="unplaced"><span>Unplaced</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+
             <th></th>
             </tr>
             </thead>
@@ -42,7 +42,7 @@
                 <td>{{player.contractId}}</td>
                 <td>{{player.gameAccount}}</td>
                 <td>{{player.creationDate | date:'medium'}}</td>
-                <td>{{player.unplaced}}</td>
+
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

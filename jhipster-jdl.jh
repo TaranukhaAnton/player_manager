@@ -10,10 +10,8 @@ entity Player{
     phone String ,
     contractId String ,
     gameAccount String ,
-        
- creationDate Instant,
-    
-	unplaced Boolean
+    creationDate Instant
+  
 }
 
 

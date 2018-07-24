@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
 import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
-import { UserRouteAccessService } from 'app/core';
 import { Observable } from 'rxjs';
 import { Player } from 'app/shared/model/player.model';
 import { PlayerService } from './player.service';
@@ -36,8 +35,7 @@ export const playerRoute: Routes = [
             authorities: ['ROLE_USER'],
             defaultSort: 'id,asc',
             pageTitle: 'Players'
-        },
-        canActivate: [UserRouteAccessService]
+        }
     },
     {
         path: 'player/:id/view',
@@ -48,8 +46,7 @@ export const playerRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Players'
-        },
-        canActivate: [UserRouteAccessService]
+        }
     },
     {
         path: 'player/new',
@@ -60,8 +57,7 @@ export const playerRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Players'
-        },
-        canActivate: [UserRouteAccessService]
+        }
     },
     {
         path: 'player/:id/edit',
@@ -72,8 +68,7 @@ export const playerRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Players'
-        },
-        canActivate: [UserRouteAccessService]
+        }
     }
 ];
 
@@ -88,7 +83,6 @@ export const playerPopupRoute: Routes = [
             authorities: ['ROLE_USER'],
             pageTitle: 'Players'
         },
-        canActivate: [UserRouteAccessService],
         outlet: 'popup'
     }
 ];

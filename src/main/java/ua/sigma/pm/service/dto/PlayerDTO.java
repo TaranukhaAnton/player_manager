@@ -31,8 +31,6 @@ public class PlayerDTO implements Serializable {
 
     private Instant creationDate;
 
-    private Boolean unplaced;
-
     public Long getId() {
         return id;
     }
@@ -121,14 +119,6 @@ public class PlayerDTO implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public Boolean isUnplaced() {
-        return unplaced;
-    }
-
-    public void setUnplaced(Boolean unplaced) {
-        this.unplaced = unplaced;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -164,7 +154,6 @@ public class PlayerDTO implements Serializable {
             ", contractId='" + getContractId() + "'" +
             ", gameAccount='" + getGameAccount() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
-            ", unplaced='" + isUnplaced() + "'" +
             "}";
     }
 }

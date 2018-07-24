@@ -24,7 +24,7 @@ import java.sql.SQLException;
 
 @Configuration
 @EnableJpaRepositories("ua.sigma.pm.repository")
-@EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
+
 @EnableTransactionManagement
 public class DatabaseConfiguration {
 

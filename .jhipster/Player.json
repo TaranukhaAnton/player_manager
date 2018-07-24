@@ -40,10 +40,6 @@
         {
             "fieldName": "creationDate",
             "fieldType": "Instant"
-        },
-        {
-            "fieldName": "unplaced",
-            "fieldType": "Boolean"
         }
     ],
     "relationships": [],
