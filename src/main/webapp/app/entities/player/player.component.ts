@@ -1,21 +1,22 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import { IPlayer } from 'app/shared/model/player.model';
-import { Principal } from 'app/core';
+import {Subscription} from 'rxjs';
+import {JhiAlertService, JhiEventManager, JhiParseLinks} from 'ng-jhipster';
 
-import { ITEMS_PER_PAGE } from 'app/shared';
-import { PlayerService } from './player.service';
+import {IPlayer} from 'app/shared/model/player.model';
+import {Principal} from 'app/core';
+
+import {ITEMS_PER_PAGE} from 'app/shared';
+import {PlayerService} from './player.service';
 
 @Component({
     selector: 'jhi-player',
     templateUrl: './player.component.html'
 })
 export class PlayerComponent implements OnInit, OnDestroy {
-    currentAccount: any;
+    // currentAccount: any;
     players: IPlayer[];
     error: any;
     success: any;
@@ -30,15 +31,13 @@ export class PlayerComponent implements OnInit, OnDestroy {
     previousPage: any;
     reverse: any;
 
-    constructor(
-        private playerService: PlayerService,
-        private parseLinks: JhiParseLinks,
-        private jhiAlertService: JhiAlertService,
-        private principal: Principal,
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
-        private eventManager: JhiEventManager
-    ) {
+    constructor(private playerService: PlayerService,
+                private parseLinks: JhiParseLinks,
+                private jhiAlertService: JhiAlertService,
+                private principal: Principal,
+                private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private eventManager: JhiEventManager) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe(data => {
             this.page = data.pagingParams.page;
@@ -93,9 +92,6 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then(account => {
-            this.currentAccount = account;
-        });
         this.registerChangeInPlayers();
     }
 

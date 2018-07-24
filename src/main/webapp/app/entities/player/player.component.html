@@ -1,32 +1,82 @@
 <div>
-    <h2 id="page-heading">
-        <span>Players</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-player" [routerLink]="['/player/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span >
-            Create new Player
-            </span>
-        </button>
-    </h2>
+    <!--<h2 id="page-heading">-->
+    <!--
+            <span>Players</span>
+            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-player"
+                    [routerLink]="['/player/new']">
+                <fa-icon [icon]="'plus'"></fa-icon>
+                <span>
+                Create new Player
+                </span>
+            </button>
+    -->
+    <!--</h2>-->
+
+    <div class="row">
+        <div class="col-md-1">
+            Search Criteria
+        </div>
+        <div class="col-md-2">
+            <input type="text" class="form-control" name="userName" id="field_userName1"
+                   [(ngModel)]="itemsPerPage"/>
+        </div>
+
+        <div class="col-md-2">
+            <input type="text" class="form-control" name="userName" id="field_userName2"
+                   [(ngModel)]="itemsPerPage"/>
+        </div>
+        <div class="col-md-2">
+            <input type="text" class="form-control" name="userName" id="field_userName3"
+
+                   [(ngModel)]="itemsPerPage"/>
+        </div>
+
+        <div class="col-md-4">
+        </div>
+
+    </div>
+
     <jhi-alert></jhi-alert>
     <br/>
     <div class="table-responsive" *ngIf="players">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="userName"><span>User Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nickName"><span>Nick Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="fullName"><span>Full Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="address"><span>Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="email"><span>Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="mobile"><span>Mobile</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="phone"><span>Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="contractId"><span>Contract Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="gameAccount"><span>Game Account</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="creationDate"><span>Creation Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="id"><span>ID</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="userName"><span>User Name</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="nickName"><span>Nick Name</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="fullName"><span>Full Name</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="address"><span>Address</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="email"><span>Email</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="mobile"><span>Mobile</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="phone"><span>Phone</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="contractId"><span>Contract Id</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="gameAccount"><span>Game Account</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="creationDate"><span>Creation Date</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
 
-            <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -72,11 +122,35 @@
         </table>
     </div>
     <div *ngIf="players && players.length">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+
+        <div class="row">
+            <div class="col-md-3">
+                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5"
+                                [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="userName" id="field_userName"
+                       [(ngModel)]="itemsPerPage"/>
+            </div>
+
+            <div class="col-md-3">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage"
+                                [maxSize]="50"
+                                [rotate]="true" (pageChange)="loadPage(page)"
+                                [directionLinks]="true"></ngb-pagination>
+
+            </div>
+
         </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-        </div>
+
+
+        <!--        <div class="row justify-content-center">
+                    <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5"
+                                    [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="row justify-content-center">
+                    <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                                    [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+                </div>-->
     </div>
 </div>
