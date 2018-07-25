@@ -1,41 +1,46 @@
 <div>
-    <!--<h2 id="page-heading">-->
-    <!--
-            <span>Players</span>
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-player"
-                    [routerLink]="['/player/new']">
-                <fa-icon [icon]="'plus'"></fa-icon>
-                <span>
-                Create new Player
-                </span>
-            </button>
-    -->
-    <!--</h2>-->
-
     <div class="row">
         <div class="col-md-1">
             Search Criteria
         </div>
         <div class="col-md-2">
-            <input type="text" class="form-control" name="userName" id="field_userName1"
-                   [(ngModel)]="itemsPerPage"/>
+            <ng-select [items]="typeOptions"
+                       [(ngModel)]="selectedType">
+            </ng-select>
         </div>
 
         <div class="col-md-2">
-            <input type="text" class="form-control" name="userName" id="field_userName2"
-                   [(ngModel)]="itemsPerPage"/>
+            <ng-select [items]="fields"
+                       bindLabel="value"
+                       bindValue="id"
+                       [(ngModel)]="selectedField">
+            </ng-select>
         </div>
         <div class="col-md-2">
-            <input type="text" class="form-control" name="userName" id="field_userName3"
-
-                   [(ngModel)]="itemsPerPage"/>
+            <input type="text" class="form-control" name="filterValue" id="filterValue" [(ngModel)]="filterValue"/>
         </div>
 
         <div class="col-md-4">
+            <button type="button" class="btn btn-primary">Add criterion</button>
+            <button type="button" class="btn btn-primary" (click)="search()">Search</button>
+
         </div>
 
     </div>
+    <div class="row">
+        <div class="col-md-1">
+            <ng-select [items]="recordsPerPageOptions"
+                       [clearable]="false"
+                       [(ngModel)]="recordsPerPageValue">
+            </ng-select>
+        </div>
+        <div class="col-md-1">
+            records per page
+        </div>
+        <div class="col-md-10">
 
+        </div>
+    </div>
     <jhi-alert></jhi-alert>
     <br/>
     <div class="table-responsive" *ngIf="players">
@@ -57,14 +62,12 @@
                 <th jhiSortBy="address"><span>Address</span>
                     <fa-icon [icon]="'sort'"></fa-icon>
                 </th>
-                <th jhiSortBy="email"><span>Email</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
-                <th jhiSortBy="mobile"><span>Mobile</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
-                <th jhiSortBy="phone"><span>Phone</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
+                <th>
+                    <ngb-tabset (tabChange)="beforeChange($event)">
+                        <ngb-tab title="Mail" id="mail"></ngb-tab>
+                        <ngb-tab title="Mobile" id="mobile"></ngb-tab>
+                        <ngb-tab title="Tel" id="tel"></ngb-tab>
+                    </ngb-tabset>
                 </th>
                 <th jhiSortBy="contractId"><span>Contract Id</span>
                     <fa-icon [icon]="'sort'"></fa-icon>
@@ -86,9 +89,9 @@
                 <td>{{player.nickName}}</td>
                 <td>{{player.fullName}}</td>
                 <td>{{player.address}}</td>
-                <td>{{player.email}}</td>
-                <td>{{player.mobile}}</td>
-                <td>{{player.phone}}</td>
+
+                <td>{{getSelectedFieldValue(player)}}</td>
+
                 <td>{{player.contractId}}</td>
                 <td>{{player.gameAccount}}</td>
                 <td>{{player.creationDate | date:'medium'}}</td>
@@ -129,8 +132,7 @@
                                 [itemsPerPage]="itemsPerPage"></jhi-item-count>
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control" name="userName" id="field_userName"
-                       [(ngModel)]="itemsPerPage"/>
+
             </div>
 
             <div class="col-md-3">

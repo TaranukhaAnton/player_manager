@@ -10,6 +10,7 @@ import {Principal} from 'app/core';
 
 import {ITEMS_PER_PAGE} from 'app/shared';
 import {PlayerService} from './player.service';
+import {NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'jhi-player',
@@ -30,6 +31,45 @@ export class PlayerComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
+    filterValue = '*';
+
+    recordsPerPageValue = 10;
+    recordsPerPageOptions = [10, 25, 50];
+
+    selectedColumn = 'mail';
+
+    selectedType = 'All';
+    typeOptions = ['All', 'Not all'];
+
+    selectedField: any;
+    fields = [{
+        'id': 'username',
+        'value': 'Username'
+    }, {
+        'id': 'nickName',
+        'value': 'Nickname'
+    }, {
+        'id': 'fullName',
+        'value': 'fullName'
+    }, {
+        'id': 'address',
+        'value': 'address'
+    }, {
+        'id': 'email',
+        'value': 'email'
+    }, {
+        'id': 'mobile',
+        'value': 'mobile'
+    }, {
+        'id': 'phone',
+        'value': 'phone'
+    }, {
+        'id': 'contractId',
+        'value': 'contractId'
+    }, {
+        'id': 'gameAccount',
+        'value': 'gameAccount'
+    }];
 
     constructor(private playerService: PlayerService,
                 private parseLinks: JhiParseLinks,
@@ -124,5 +164,26 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    beforeChange($event: NgbTabChangeEvent) {
+
+        this.selectedColumn = $event.nextId;
+
+        // console.log($event.nextId);
+    }
+
+    getSelectedFieldValue(player: IPlayer) {
+        if (this.selectedColumn === 'mail') {
+            return player.email;
+        } else if (this.selectedColumn === 'mobile') {
+            return player.mobile;
+        } else if (this.selectedColumn === 'tel') {
+            return player.phone;
+        }
+    }
+
+    search() {
+
     }
 }

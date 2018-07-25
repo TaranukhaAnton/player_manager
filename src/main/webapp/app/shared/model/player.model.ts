@@ -12,7 +12,6 @@ export interface IPlayer {
     contractId?: string;
     gameAccount?: string;
     creationDate?: Moment;
-    unplaced?: boolean;
 }
 
 export class Player implements IPlayer {
@@ -27,9 +26,8 @@ export class Player implements IPlayer {
         public phone?: string,
         public contractId?: string,
         public gameAccount?: string,
-        public creationDate?: Moment,
-        public unplaced?: boolean
+        public creationDate?: Moment
     ) {
-        this.unplaced = false;
+
     }
 }
